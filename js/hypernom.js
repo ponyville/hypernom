@@ -414,6 +414,8 @@ function animate() {
 }
 
 function startLevel() {
+  controls.phoneVR.requestEventPermission();
+
   hideButtons();
   effect.flatMode = false;
 

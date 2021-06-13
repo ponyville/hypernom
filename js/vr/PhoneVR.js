@@ -18,6 +18,20 @@ function PhoneVR() {
     }.bind(this));
 }
 
+PhoneVR.prototype.requestEventPermission = function() {
+    if (DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission === "function") {
+        DeviceOrientationEvent.requestPermission().then(function (permissionState) {
+            // Simply log the result, not much more we can do here.
+            // We could tell the user that they need to manually give permission if they've denied it in the past.
+            if (permissionState === "granted") {
+                console.log('Access to DeviceOrientationEvent granted.');
+            } else {
+                console.log('Access to DeviceOrientationEvent denied.');
+            }
+        });
+    }
+};
+
 PhoneVR.prototype.orientationIsAvailable = function() {
     return this.deviceAlpha !== null;
 }
